@@ -6,17 +6,16 @@
 
 # Introduction:
 
-In this workshop you will learn about polygonal geometry, and how 3D *meshes* can be
-constructed out of simple primitives. To begin, clone this repository and open
+In this workshop you will learn about polygonal geometry, and the internal data structures that 
+represent the _shape_ of three-dimensional objects, often known as *meshes*. To begin, clone this repository and open
 it in Unity as shown last week.
 You'll be working with the following assets today:
 
-* **MainScene.unity** - A Unity scene containing a partially formed cube entity.
-  You will be working with this scene.
+* **MainScene.unity** - The scene you should open and work with for the entire workshop.
 * **GenerateCube.cs** - A custom component that generates a cube mesh when the 
 "game" starts.
 * **VertexColorShader.shader** - A Cg/HLSL shader used to render the cube using simple 
-vertex colours. Don't worry about understanding this file in detail today -- you'll learn about
+vertex colours. Don't worry about understanding this file in detail today -- you'll learn more about
 shaders in future weeks.
 * **VertexColorMaterial.mat** - A material asset that utilises the above shader
 to draw the cube's surface.
@@ -36,14 +35,17 @@ Open `MainScene.unity` in the editor. Press the ‘Play’ button and you should
 > which you'll modify shortly.
 
 
-   * Use the ‘scene gizmo’ located in the top-right of the viewport in
-     order to select different angles to view the cube from. Which two faces are
-     missing?
-   * Open `VertexColorShader.shader`, remove the code `Cull Off`, and save the
-     file. **Make sure you keep this code removed for the remainder of the workshop.**
-     Examine the cube again in the Unity editor. What did `Cull Off` do?
+Use the ‘scene gizmo’ located in the top-right of the viewport in
+order to select different angles to view the cube from. Which two faces are
+missing? 
 
-#### 2. Complete the cube
+#### 2. Turn on culling
+
+Open `VertexColorShader.shader`, remove the code `Cull Off`, and save the
+file. Make sure you keep this code removed for the remainder of the workshop.
+Examine the cube again in the Unity editor. What did `Cull Off` do?
+
+#### 3. Complete the cube
 
 Add vertex definitions to `GenerateCube.cs` to complete the cube (add the
 missing faces). Culling is now on, so make sure you use the correct vertex
@@ -55,7 +57,7 @@ to `Color.blue`.
   <img src="Gifs/2-Cube.gif">
 </p>
 
-#### 3. Create a pyramid
+#### 4. Create a pyramid
 
 In a file called `GeneratePyramid.cs`, write a component that generates an upward
 facing square pyramid. The tip of the pyramid should be located
@@ -75,10 +77,15 @@ welcome to use it as a template.
 > define how the object's surface should be drawn. 
 > In this case, you'll want to assign the existing `VertexColorMaterial.mat` asset
 > so that vertex colour definitions in your *mesh* are utilised as part of the rendering process.
-> 
-> If you are stuck, you might find it helpful to use the existing **Cube** game object as a guide!
-> Remember that the mesh filter/renderer combination is incredibly common in Unity, as most objects have a shape (`MeshFilter`),
-> and there needs to be a way of describing the surface of that shape before it can be drawn (`MeshRenderer` with an assigned *material*). 
+
+If you are stuck, you might find it helpful to use the existing **Cube** game object as a guide!
+Remember that the mesh filter/renderer combination is incredibly common in Unity, as most objects have a shape (`MeshFilter`),
+and there needs to be a way of describing the surface of that shape before it can be drawn (`MeshRenderer` with an assigned *material*). 
+You might notice that the mesh filter not just represents the shape but also contains colour data, and that seemingly
+contradicts this notion. However this is just per-vertex _data_ -- it is the mesh renderer, and ultimately the
+corresponding shader, which *interprets* this data as actual colours that should be drawn. Another material
+might interpret vertex "colours" in an entirely different way, or ignore them altogether. If this is confusing,
+don't worry! You'll learn more about shaders and materials in a few weeks.
 
 
 
@@ -87,23 +94,24 @@ welcome to use it as a template.
   <img src="Gifs/3-Pyramid.gif">
 </p>
 
-#### 4. Flip the winding order
+#### 5. Reverse the vertex winding order
 
-Navigate the view to look from the inside of the cube. Since back-face
+Move the scene view camera _inside_ the cube. Since back-face
 culling is on, you won’t be able to see the inside faces of the cube. Modify
-the _indices_ in `GenerateCube.cs` so
+the indices in `GenerateCube.cs` so
 that you can see the interior of the cube instead of the exterior. Carefully read 
 the associated code comments as these provide some more context about what
-the indices actually represent.
+the indices actually represent (the indices are defined in step 3, near the end of the file).
+Can you think of another way to do this that doesn't involve changing the indices?
 
 <p align="center">
   <img src="Gifs/4-Inside.gif">
 </p>
 
-#### 5. Generate a cone (challenge)
+#### 6. Generate a cone (challenge)
 
 Constructing meshes by manually defining vertices/colours is tedious and rarely done
-in practice (phew!). So far we've only gotten you to do this so that you understand the 
+in practice (phew!). So far we've only asked you to do this so that you understand the 
 internal data structures required to define a mesh.
 Nonetheless, the ability to generate a mesh using C# scripting is far from useless if
 we want to _procedurally generate_ a mesh that is parameterised in some way.
@@ -121,7 +129,7 @@ like `Mathf.Sin` and `Mathf.Cos` should help.
   <img src="Gifs/Sinus_en_cosinus.png">
 </p>
 
-#### 6. Search for and import a 3D model (extension)
+#### 7. Search for and import a 3D model (extension)
 
 In practice, there are artists in a game dev team who use [3D modelling](https://en.wikipedia.org/wiki/3D_modeling) tools
 to design _models_ in the scene ([Blender](https://www.blender.org/) is worth checking out if you

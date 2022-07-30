@@ -22,14 +22,6 @@ public class GenerateCube : MonoBehaviour
 
     private Mesh CreateMesh()
     {
-        // Preamble: Usually we don't create a mesh manually like this. This is
-        // a bit like creating an image by setting individual pixels. It's
-        // tedious and best left to software that helps artists create 3D
-        // objects such as Blender. In fact, there's already a cube mesh that
-        // ships with Unity as you saw last week! However, one exception is when
-        // we want to generate an object dynamically based on an algorithm. The
-        // challenge question in this class addresses this.
-        
         // Step 0: Create the mesh object. This contains various data structures
         // that allow us to define complex 3D objects. Recommended reading:
         // - https://docs.unity3d.com/ScriptReference/Mesh.html
@@ -42,7 +34,7 @@ public class GenerateCube : MonoBehaviour
         // allow us to construct 3D geometry. For everyone's sanity, we have
         // ordered them such that consecutive chunks of three vertices represent
         // individual triangles. This does not have to be the case though, and
-        // depends on the way the mesh surface itself is constructed (step 3).
+        // depends on the way the mesh surface itself is defined (step 3).
         mesh.SetVertices(new[]
         {
             // Top face
@@ -81,8 +73,7 @@ public class GenerateCube : MonoBehaviour
             new Vector3(1.0f, 1.0f, -1.0f),
             new Vector3(1.0f, 1.0f, 1.0f)
 
-            // Task 2: Define additional vertices for front and back faces.
-            // Remember to also define corresponding vertex colours below!
+            // Define more vertices here!
         });
 
         // Step 2: Define the vertex colours. There is a one-to-one index
@@ -126,12 +117,12 @@ public class GenerateCube : MonoBehaviour
             Color.yellow,
             Color.yellow
             
-            // Define corresponding colours here!
+            // Define more colours here!
         });
 
         // Step 3: Define the indices. The indices "connect" vertices together
         // in order to define the triangles that represent the mesh surface.
-        // To do this we will create an integer array whereby consecutive chunks
+        // The indices are simply an integer array whereby consecutive chunks
         // of 3 integers represent individual triangles as index mappings. For
         // example: [2, 3, 9] defines a single triangle composed of the points
         // vertices[2], vertices[3], vertices[9] (and the respective colours).
@@ -143,11 +134,8 @@ public class GenerateCube : MonoBehaviour
         mesh.SetIndices(indices, MeshTopology.Triangles, 0);
         
         // Note that the topology argument specifies that we are in fact
-        // defining triangles in our indices array. It is also possible to
+        // defining *triangles* in our indices array. It is also possible to
         // define the mesh surface using quads (MeshTopology.Quads).
-
-        // Task 4: Modify the indices above to show the interior of the cube
-        // instead of the exterior (when back-face culling is on).
 
         return mesh;
     }
