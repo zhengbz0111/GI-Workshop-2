@@ -27,6 +27,9 @@ to draw the cube's surface.
 Open `MainScene.unity` in the editor. Press the ‘Play’ button and you should see a
 *partially* rendered cube. Switch to the ‘Scene’ tab so you can manually 
 [navigate the scene](https://docs.unity3d.com/2022.2/Documentation/Manual/SceneViewNavigation.html).
+Use the ‘scene gizmo’ located in the top-right of the viewport in
+order to select different angles to view the cube from. Which two faces are
+missing?
 
 > **Note** <br>
 > You might notice this cube is not visible except during play mode. This is because 
@@ -34,10 +37,6 @@ Open `MainScene.unity` in the editor. Press the ‘Play’ button and you should
 > *generated* upon starting the scene. This is done inside the `GenerateCube.cs` component,
 > which you'll modify shortly.
 
-
-Use the ‘scene gizmo’ located in the top-right of the viewport in
-order to select different angles to view the cube from. Which two faces are
-missing? 
 
 #### 2. Turn on culling
 
