@@ -34,17 +34,43 @@ public class GeneratePyramid : MonoBehaviour
      mesh.SetVertices(new[]
     {
         //Top point
-        new Vector3(0.0f, 1.0f, 0.0f),
+        //new Vector3(0.0f, 1.0f, 0.0f),
 
 
         // Bottom face
+        new Vector3(1.0f, 0.0f, 1.0f),
+        new Vector3(-1.0f, 0.0f, -1.0f),
+        new Vector3(1.0f, 0.0f, -1.0f),
+            
         new Vector3(-1.0f, 0.0f, -1.0f),
         new Vector3(1.0f, 0.0f, 1.0f),
         new Vector3(-1.0f, 0.0f, 1.0f),
-            
+
+         // Left face
+        new Vector3(0.0f, 1.0f, 0.0f),
         new Vector3(-1.0f, 0.0f, -1.0f),
-        new Vector3(1.0f, 0.0f, -1.0f),
+        new Vector3(-1.0f, 0.0f, 1.0f),
+        
+            
+
+        // Right face
+        new Vector3(0.0f, 1.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 1.0f),
+        new Vector3(1.0f, 0.0f, -1.0f),
+        
+        //Front face
+        new Vector3(0.0f, 1.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, -1.0f),
+        new Vector3(-1.0f, 0.0f, -1.0f),
+            
+            
+
+        //Back face
+        new Vector3(0.0f, 1.0f, 0.0f),
+        new Vector3(-1.0f, 0.0f, 1.0f),
+        new Vector3(1.0f, 0.0f, 1.0f)
+            
+          
 
 
         
@@ -52,6 +78,31 @@ public class GeneratePyramid : MonoBehaviour
 
     mesh.SetColors(new[]
     {
+        // Bottom face
+            Color.red,
+            Color.red,
+            Color.red,
+            
+            Color.red,
+            Color.red,
+            Color.red,
+            // Left face
+            Color.yellow, 
+            Color.yellow,
+            Color.yellow,
+            // Right face
+            Color.yellow, 
+            Color.yellow,
+            Color.yellow,
+            //Front face
+            Color.blue, 
+            Color.blue,
+            Color.blue,
+
+            //Back Face
+            Color.blue, 
+            Color.blue,
+            Color.blue
     });
 
         // Step 3: Define the indices. The indices "connect" vertices together
