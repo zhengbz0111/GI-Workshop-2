@@ -87,22 +87,22 @@ public class GeneratePyramid : MonoBehaviour
             Color.red,
             Color.red,
             // Left face
-            Color.yellow, 
-            Color.yellow,
-            Color.yellow,
-            // Right face
-            Color.yellow, 
-            Color.yellow,
-            Color.yellow,
-            //Front face
             Color.blue, 
             Color.blue,
             Color.blue,
+            // Right face
+            Color.grey, 
+            Color.grey,
+            Color.grey,
+            //Front face
+            Color.yellow, 
+            Color.yellow,
+            Color.yellow,
 
             //Back Face
-            Color.blue, 
-            Color.blue,
-            Color.blue
+            Color.green, 
+            Color.green,
+            Color.green
     });
 
         // Step 3: Define the indices. The indices "connect" vertices together
